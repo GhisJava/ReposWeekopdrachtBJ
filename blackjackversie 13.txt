@@ -1,0 +1,45 @@
+import java.util.Random;
+import java.util.ArrayList;
+
+public class BlackJackApplicatie {
+	public static void main(String[] args) {
+
+		String[] kaartAfbeeldingen = { "Harten", "Klaveren", "Schoppen", "Ruiten" };
+		String[] kaartNummers = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "Boer", "Vrouw", "Heer" };
+		String[][] deck = new String[4][13];
+
+		System.out.println("De volgende 52 kaarten zijn nu geschud: " + "\n");
+
+		for (int afb = 0; afb < kaartAfbeeldingen.length; afb++) {
+			for (int nrs = 0; nrs < kaartNummers.length; nrs++) {
+				deck[afb][nrs] = kaartAfbeeldingen[afb] + " " + kaartNummers[nrs];
+
+				//for (String af : kaartAfbeeldingen) {
+				//	for (String nr : kaartNummers) {
+				//		System.out.println(af + " " + nr);
+				//	}
+				//}
+
+			}
+		}//Onderstaande code integraal overgenomen van Danielle na ontelbare eigen pogingen
+		Random schudAfb = new Random();
+		Random schudNum = new Random();
+		
+		for (int afb = 0; afb < kaartAfbeeldingen.length; afb++) {
+			for (int nrs = 0; nrs < kaartNummers.length; nrs++) {
+				int afbld = schudAfb.nextInt(kaartAfbeeldingen.length);
+				int krtnrs = schudNum.nextInt(kaartNummers.length);
+				
+				String temp = deck[afb][nrs];
+				deck[afb][nrs] = deck[afbld][krtnrs];
+				deck[afbld][krtnrs] = temp;
+			}
+		}
+		
+			for (int afb = 0; afb < kaartAfbeeldingen.length; afb++) {
+				for (int nrs = 0; nrs < kaartNummers.length; nrs++) {
+					System.out.println(deck[afb][nrs]);
+				}
+			}
+	}
+}
